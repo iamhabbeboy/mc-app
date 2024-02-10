@@ -101,8 +101,8 @@ export default function Home() {
             <button className="button button__outline py-2 px-7 ml-10" onClick={handleHowToCreateModal}>How To Create </button>
           </div>
         </div>
-        <div className="hero__image w-6/12">
-          {/* <Image src="/love-shot.png" width={654} height={689} alt="Love shot image" /> */}
+        <div className="hero__image lg:w-6/12 w-full">
+          <Image src="/love-shot.png" width={654} height={689} alt="Love shot image" />
         </div>
       </section>
       {instructionModal && <Modal size="default">

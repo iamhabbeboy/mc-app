@@ -35,6 +35,10 @@ body {
   height: 100vh;
 }
 
+.hero__image > img {
+  display: none;
+}
+
 .color-dark-grey {
   color: var(--dark-grey);
 }
@@ -178,5 +182,15 @@ line-height: 44px;
 
   .button__layout > .button__outline {
     margin-left: 0px;
+  }
+
+  .hero__image {
+    background-image: none;
+    height: auto;
+    margin-top: 30px;
+  }
+
+  .hero__image > img {
+    display: block;
   }
 }
