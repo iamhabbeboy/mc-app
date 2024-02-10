@@ -51,14 +51,13 @@
 @media only screen and (min-width: 475px) and (max-width: 1020px) {
   .image__previewLayout {
     background-size: 100% 100%;
-    background-attachment: fixed;
     height: 800px;
   }
 
   .image__previewer {
     max-width:70%;
-    height: auto;
-    top: 36px; 
+    height: 400px;
+    top: 96px; 
     left:88px;
     background-size: cover;
     background-position: center;
