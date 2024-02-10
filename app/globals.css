@@ -4,26 +4,136 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-color: #FFF;
+  --dark-grey: #575757;
+  --linear-orange: linear-gradient(99deg, #FF2E00 -4.53%, #FFBA08 107.54%);
+  --red-orange: #FF2E00;
+  --dark-red: #FF3100;
+  --white: #FFF;
+  --orange: #FFBA08;
+  --white-linear: linear-gradient(180deg, #F0F0F0 0%, #FFF 100%);
 }
 
-@media (prefers-color-scheme: dark) {
+/*@media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+}*/
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: var(--background-color);
+}
+
+.hero__image {
+  background-image: url('/love-shot.png');
+  background-size: contain;
+  background-position: right;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.color-dark-grey {
+  color: var(--dark-grey);
+}
+
+.input-form {
+  border: 1px solid var(--dark-grey); 
+}
+
+.input-checkbox {
+  border: 1px solid var(--orange);
+}
+
+.button {
+  border-radius: 100px;
+  font-weight: 600;
+}
+
+.button__create {
+  border: 1px solid transparent;
+  background: var(--linear-orange); 
+}
+
+.button__create:hover {
+  border: 1px solid var(--dark-red);
+  background: var(--white);
+  color: var(--red-orange);
+}
+
+.button__outline {
+  border: 1px solid var(--dark-red);
+  color: var(--red-orange);
+}
+
+.button__outline:hover {
+    background: var(--linear-orange); 
+    color: var(--white);
+}
+
+.section__title {
+  font-size: 70px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 74px; /* 105.714% */
+  letter-spacing: 1.4px; 
+}
+
+.section__subtext {
+  font-size: 70px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 74px; /* 105.714% */
+  letter-spacing: 1.4px; 
+  background: var(--linear-orange);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section__paragraph {
+  color: var(--dark-grey);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  width: 400px;
+}
+
+.modal__title {
+font-size: 40px;
+font-style: normal;
+font-weight: 600;
+line-height: 44px;
+}
+
+.modal__title > span {
+  background: var(--linear-orange);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+}
+
+.modal__content {
+  margin: 20px 0px;
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-item: flex-start;
+  border: 1px solid var(--linear-orange);
+  background: var(--white-linear);
+  border: 1px solid var(--orange);
+}
+
+.modal__content > p {
+  color: var(--dark-grey);
+}
+
+.modal__ack {
+  font-size: 18px;
 }
 
 @layer utilities {

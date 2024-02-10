@@ -1,8 +1,27 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import localFont from 'next/font/local'
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
+const rilenoSans = localFont({
+  src: [
+    {
+      path: 'assets/rileno-sans/RilenoSans-Bold.woff',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: 'assets/rileno-sans/RilenoSans-Light.woff',
+      weight: '400',
+      style: 'bold',
+    },
+    {
+      path: 'assets/rileno-sans/RilenoSans-SemiBold.woff',
+      weight: '600',
+      style: 'bold',
+    },
+  ]});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${rilenoSans.className} "bg-white"`}>{children}</body>
     </html>
   );
 }
