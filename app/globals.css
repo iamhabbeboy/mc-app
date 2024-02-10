@@ -146,4 +146,14 @@ line-height: 44px;
   .modal__title {
     font-size: 24px;
   }
+
+  .section__layout {
+    text-align: center;
+    padding: 0px 3px;
+  }
+
+  .section__paragraph {
+    width: 100%;
+    padding: 0px 3px;
+  }
 }
