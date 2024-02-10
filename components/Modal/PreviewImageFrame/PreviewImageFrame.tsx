@@ -8,6 +8,8 @@ import axios from "axios";
 const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
   const imageFrameRef = useRef(null);
   const [imagePreview, setImagePreview] = useState("")
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     if(!imageSelected) {
       return alert("error occured while processing your photo, try again.");
@@ -19,34 +21,36 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
   const handleDownload = async () => {
     // call api endpoint 
     storeUserInformation();
-    // if (imageFrameRef.current) {
-    //     htmlToImage.toPng(imageFrameRef.current)
-    //       .then(function (dataUrl) {
-    //         const link = document.createElement('a');
-    //         link.href = dataUrl;
-    //         link.download = 'mcom-love-possible.png';
-    //         link.click();
-    //       })
-    //       .catch(function (error) {
-    //         console.error(error);
-    //         alert('Error occured, kindly refresh the page and try again.');
-    //       });
-    // }
+    if (imageFrameRef.current) {
+        htmlToImage.toPng(imageFrameRef.current)
+          .then(function (dataUrl) {
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = 'mcom-love-possible.png';
+            link.click();
+          })
+          .catch(function (error) {
+            console.error(error);
+            alert('Error occured, kindly refresh the page and try again.');
+          });
+    }
   }
 
   const storeUserInformation = async () => {
+    setIsLoading(true);
     const user = JSON.parse(localStorage.getItem("mcron-data") || "");
     if(!user || !imageSelected) {
       return alert("Error occured while processing your data, try again by refreshing the page");
     }
-    const formData = new FormData();
-    formData.append("user", JSON.stringify(user));
-    formData.append("image", imageSelected);
-    const resp = await axios.post('/user', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }})
-    console.log(resp)
+    // const formData = new FormData();
+    // formData.append("user", JSON.stringify(user));
+    // formData.append("image", imageSelected);
+    // const resp = await axios.post('/user', formData, {
+    //   headers: {
+    //     'Content-Type': 'multipart/form-data'
+    //   }})
+    // console.log(resp)
+    setIsLoading(false);
   }
 
   const handleRestartProcess = () => {
@@ -66,25 +70,26 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
         </div>
         <div className="bg-[url('/pattern-2.png')] bg-repeat w-full">
           <h1 className="modal__title text-center py-10">Your <span>Make Love Possible</span> Image Is Ready!</h1>
-          <div className={`rounded-[30px] w-[60%] mx-auto py-10 ${style.frame__layout}`}>
-            <div className="mx-auto w-[450px]">
-              <span className="relative left-[-380px]">
+          <div className={`rounded-[30px] sm:w-full lg:w-[60%] mx-auto md:py-10 pb-5 sm:py-5 ${style.frame__layout}`}>
+            <div className="mx-auto lg:w-[450px] sm:w-full">
+              <span className={`relative block left-[-380px] ${style.ring__circle}`}>
                 <Image src="/love-circle.svg" width={159} height={132} alt="love circle image" />
               </span>
-              <div className="bg-[url('/frame.png')] w-[450px] h-[562px] bg-contain" ref={imageFrameRef}>
-                <div className="flex justify-center">
-                  <img src={imagePreview} width={280} height={285} alt="Frame layout" className="mt-12 object-fit" />
+              <div className="bg-[url('/frame.png')] bg-no-repeat lg:w-[450px] sm:w-full h-[562px] bg-contain" ref={imageFrameRef}>
+                <div className="flex justify-center overflow-hidden h-[375px]">
+                  <img src={imagePreview} width={280} height={285} alt="Frame layout" className="mt-12 object-cover" />
                 </div>
               </div>
             </div>
             <div className="text-center mx-auto mt-5">
-              <div className="flex justify-between my-5 mx-auto text-center w-[30%]">
+              <div className={`flex justify-between my-5 mx-auto text-center ${style.button__layout}`}>
                 <button className="button button__outline py-2 px-7" onClick={() => { }}>Edit Image </button>
                 <button className="button button__outline py-2 px-7" onClick={() => { }}>Edit Love Story </button>
               </div>
-              <button className="button button__create text-white py-2 px-7" onClick={handleDownload}><span className="inline">Download Images </span>
+              <button disabled={isLoading} className="button button__create text-white py-2 px-7" onClick={handleDownload}><span className="inline">Download Images </span>
                 <Image src="/download.svg" width={24} height={24} alt="download icon" className="inline" />
               </button>
+              {isLoading && <span> <img src="/loader.svg" width={24} height={24} alt="download icon" className="inline" /></span>}
               <div className="mt-5">
                 <div className="mx-auto text-center w-[40%] mb-8">
                   <h3>Share image on social media</h3>

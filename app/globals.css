@@ -141,3 +141,9 @@ line-height: 44px;
     text-wrap: balance;
   }
 }
+
+@media only screen and (max-width: 600px){
+  .modal__title {
+    font-size: 24px;
+  }
+}

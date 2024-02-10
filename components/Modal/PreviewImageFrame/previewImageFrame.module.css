@@ -9,3 +9,29 @@
 .social__instagram {
     background: linear-gradient(213deg, #8D25F8 10.43%, #FF0373 59.21%, #FCCD00 84.51%); 
 }
+
+.button__layout {
+    width: 30%;
+}
+
+@media only screen and (min-width: 700px){
+    .button__layout {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    .button__layout {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .ring__circle {
+        display:none;
+    }
+
+    .button__layout {
+        width: 100%;
+    }
+}
