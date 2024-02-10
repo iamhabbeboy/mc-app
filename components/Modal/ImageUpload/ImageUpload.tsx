@@ -15,7 +15,12 @@ const ImageUpload = () => {
     const openModal = new CustomEvent("open-crop-image-modal");
     window.dispatchEvent(openModal);
   }
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+    accept: {
+      'image/jpeg': [],
+      'image/png': []
+    }
+  });
   useEffect(() => {
     if (acceptedFiles.length) {
       const firstImage = acceptedFiles[0];
@@ -56,7 +61,7 @@ const ImageUpload = () => {
               <p className="my-2">- or - </p>
               <button className="button button__create text-white py-2 px-7" onClick={handleImageUpload}>Upload Image </button>
               {/* <button className="button button__create text-white py-2 px-7" onClick={handleCropImageModal}>Upload Image </button> */}
-              <form method="post" encType="multipart/form-data" style={{ display: "none" }}>
+              <form method="post" encType="multipart/form-data" style={{ visibility: "hidden" }}>
                 <input type="file" />
               </form>
             </div>
