@@ -10,17 +10,21 @@ import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
 export default function Home() {
-  const [instructionModal, setInstructionModal] = useState(false);
   const [formModal, setFormModal] = useState(false);
+  const [restartModal, setRestartModal] = useState(false);
+  const [instructionModal, setInstructionModal] = useState(false);
   const [imageUploadModal, setImageUploadModal] = useState(false);
   const [closeCropImageModal, setCloseCropImageModal] = useState(false);
+  const [previewModal, setPreviewModal] = useState(false);
+  const [imageSelected, setImageSelected] = useState(null);
 
   const handleHowToCreateModal = useCallback(() => {
     setInstructionModal(!instructionModal);
   }, [instructionModal]);
 
-  const handleCropImageModal = useCallback(() => {
-    if(closeCropImageModal === true) {
+  const handleCropImageModal = useCallback((data: any) => {
+    setImageSelected(data.detail.file);
+    if (closeCropImageModal === true) {
       setFormModal(false);
     }
     setCloseCropImageModal(!closeCropImageModal);
@@ -41,7 +45,24 @@ export default function Home() {
     setFormModal(false);
   }, []);
 
+  const handleRestartModal = () => {
+    setRestartModal(false)
+  }
+
+  const handlePreviewModal = () => {
+    setCloseCropImageModal(false);
+    setPreviewModal(true);
+  }
+
+  const handleClosePreviewModal = () => {
+    setPreviewModal(false);
+    setImageUploadModal(false);
+  }
+
   useEffect(() => {
+    window.addEventListener("close-preview-modal", handleClosePreviewModal);
+    window.addEventListener("open-preview-modal", handlePreviewModal);
+    window.addEventListener("restart-modal", handleRestartModal);
     window.addEventListener("close-all-form-modal", hanleCloseAllModal);
     window.addEventListener("close-form-modal", () => setFormModal(false));
     window.addEventListener("close-instruction-modal", handleHowToCreateModal);
@@ -51,6 +72,9 @@ export default function Home() {
       setImageUploadModal(false)
     });
     return () => {
+      window.addEventListener("close-preview-modal", handleClosePreviewModal);
+      window.addEventListener("open-preview-modal", handlePreviewModal);
+      window.addEventListener("restart-modal", handleRestartModal);
       window.addEventListener("close-all-form-modal", hanleCloseAllModal);
       window.addEventListener("close-crop-image-modal", handleCloseCropImageModal);
       window.addEventListener("open-crop-image-modal", handleCropImageModal);
@@ -58,7 +82,7 @@ export default function Home() {
       window.addEventListener("close-form-modal", () => {
         setFormModal(false)
       });
-      window.addEventListener("close-image-upload-modal",  () => {
+      window.addEventListener("close-image-upload-modal", () => {
         setImageUploadModal(false)
       });
     };
@@ -87,15 +111,15 @@ export default function Home() {
       {formModal && <Modal size="medium">
         <Form />
       </Modal>}
-      {imageUploadModal &&<Modal size="full">
+      {imageUploadModal && <Modal size="full">
         <ImageUpload />
       </Modal>}
       {closeCropImageModal && <Modal size="medium">
-        <CropImage />
+        <CropImage imageSelected={imageSelected}/>
       </Modal>}
-      <Modal size="full">
+      {previewModal && <Modal size="full">
         <PreviewImageFrame />
-      </Modal>
+      </Modal>}
     </main>
   );
 }
