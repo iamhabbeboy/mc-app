@@ -1,10 +1,20 @@
 import Image from "next/image";
 import style from "./previewImageFrame.module.css";
 import * as htmlToImage from 'html-to-image';
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { ImageSelectionProps } from "../types";
 
-const PreviewImageFrame = () => {
+const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
   const imageFrameRef = useRef(null);
+  const [imagePreview, setImagePreview] = useState("")
+  useEffect(() => {
+    if(!imageSelected) {
+      return alert("error occured while processing your photo, try again.");
+    }
+    const image = URL.createObjectURL(imageSelected)
+    setImagePreview(image)
+  }, [imageSelected]);
+
   const handleDownload = async () => {
     console.log("Downloading image...")
     if (imageFrameRef.current) {
@@ -46,7 +56,7 @@ const PreviewImageFrame = () => {
               </span>
               <div className="bg-[url('/frame.png')] w-[450px] h-[562px] bg-contain" ref={imageFrameRef}>
                 <div className="flex justify-center">
-                  <Image src="/sample.png" width={280} height={280} alt="Frame layout" className="mt-12" />
+                  <Image src={imagePreview} width={280} height={280} alt="Frame layout" className="mt-12" />
                 </div>
               </div>
             </div>

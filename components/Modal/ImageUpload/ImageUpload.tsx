@@ -34,10 +34,6 @@ const ImageUpload = () => {
     imageUploadRef.current?.click();
   }
 
-  const handleProcessImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event);
-  }
-
   return (
     <>
       <div className="mx-auto flex justify-center item-center pt-10">
@@ -52,12 +48,14 @@ const ImageUpload = () => {
           <p className="text-center text-2xl">Upload a image of you and your partner</p>
           <div className={`${style.imageupload__layout} mt-20 border-2 border-dashed p-10 text-center rounded-lg`}>
             <div className="mx-auto" {...getRootProps()}>
+            {/* <div className="mx-auto"> */}
               <div className="mx-auto w-[60px]">
                 <Image src="./file-upload.svg" width={60} height={60} alt="image upload" />
               </div>
               <h4 className="text-center font-semibold my-3">Drag image here</h4>
               <p className="my-2">- or - </p>
               <button className="button button__create text-white py-2 px-7" onClick={handleImageUpload}>Upload Image </button>
+              {/* <button className="button button__create text-white py-2 px-7" onClick={handleCropImageModal}>Upload Image </button> */}
               <form method="post" encType="multipart/form-data" style={{ display: "none" }}>
                 <input type="file" />
               </form>

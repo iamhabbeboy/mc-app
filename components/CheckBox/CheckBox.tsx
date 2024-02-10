@@ -1,8 +1,12 @@
-const CheckBox = () => {
+import { useState } from "react";
+
+const CheckBox = ({ setAckStatus }: {setAckStatus: (status: boolean) => void}) => {
+  const [status, setStatus] = useState(false);
+  setAckStatus(status)
   return (
     <div className="inline-flex items-center">
       <label className="relative flex items-center p-3 rounded-full cursor-pointer" htmlFor="check">
-        <input type="checkbox"
+        <input type="checkbox" onChange={(e) => setStatus(true)}
           className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md input-checkbox transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-orange-900 checked:bg-orange-500 checked:before:bg-gray-900 hover:before:opacity-10"
           id="check" />
         <span

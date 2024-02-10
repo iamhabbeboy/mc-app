@@ -118,7 +118,7 @@ export default function Home() {
         <CropImage imageSelected={imageSelected}/>
       </Modal>}
       {previewModal && <Modal size="full">
-        <PreviewImageFrame />
+        <PreviewImageFrame imageSelected={imageSelected} />
       </Modal>}
     </main>
   );
