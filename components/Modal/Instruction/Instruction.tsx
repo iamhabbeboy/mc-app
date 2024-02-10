@@ -12,7 +12,7 @@ const Instruction = () => {
   }
 
   return (
-    <div className="overflow-scroll h-[600px]">
+    <div className="overflow-scroll h-[600px] relative top-[100%]">
       <div className="mx-auto lg:flex lg:justify-between w-full">
         <div>{""}</div>
         <Image src="./logo.svg" width={154} height={34} alt="Logo image" />

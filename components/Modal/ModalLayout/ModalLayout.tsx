@@ -9,6 +9,7 @@ const Modal = ({ children, size }: Props) => {
 
   return (
     <section className={`${defaultSize} fixed left-0 top-0 bg-black bg-opacity-50 w-screen h-screen ${fullContentSize}`}>
+    {/*<section className={`${defaultSize} fixed left-0 top-0 bg-black bg-opacity-50 w-screen h-screen ${fullContentSize}`}>*/}
       <div className={`bg-white ${fullContent} ${mediumSize} ${defaultSizeContent}`}> {children} </div>
     </section>
   )
