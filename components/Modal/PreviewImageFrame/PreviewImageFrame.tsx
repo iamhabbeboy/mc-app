@@ -3,6 +3,7 @@ import style from "./previewImageFrame.module.css";
 import * as htmlToImage from 'html-to-image';
 import { useEffect, useRef, useState } from "react";
 import { ImageSelectionProps } from "../types";
+import axios from "axios";
 
 const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
   const imageFrameRef = useRef(null);
@@ -16,20 +17,36 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
   }, [imageSelected]);
 
   const handleDownload = async () => {
-    console.log("Downloading image...")
-    if (imageFrameRef.current) {
-        htmlToImage.toPng(imageFrameRef.current)
-          .then(function (dataUrl) {
-            const link = document.createElement('a');
-            link.href = dataUrl;
-            link.download = 'mcom-love-possible.png';
-            link.click();
-          })
-          .catch(function (error) {
-            console.error(error);
-            alert('Error occured, kindly refresh the page and try again.');
-          });
+    // call api endpoint 
+    storeUserInformation();
+    // if (imageFrameRef.current) {
+    //     htmlToImage.toPng(imageFrameRef.current)
+    //       .then(function (dataUrl) {
+    //         const link = document.createElement('a');
+    //         link.href = dataUrl;
+    //         link.download = 'mcom-love-possible.png';
+    //         link.click();
+    //       })
+    //       .catch(function (error) {
+    //         console.error(error);
+    //         alert('Error occured, kindly refresh the page and try again.');
+    //       });
+    // }
+  }
+
+  const storeUserInformation = async () => {
+    const user = JSON.parse(localStorage.getItem("mcron-data") || "");
+    if(!user || !imageSelected) {
+      return alert("Error occured while processing your data, try again by refreshing the page");
     }
+    const formData = new FormData();
+    formData.append("user", JSON.stringify(user));
+    formData.append("image", imageSelected);
+    const resp = await axios.post('/user', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }})
+    console.log(resp)
   }
 
   const handleRestartProcess = () => {
@@ -56,7 +73,7 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
               </span>
               <div className="bg-[url('/frame.png')] w-[450px] h-[562px] bg-contain" ref={imageFrameRef}>
                 <div className="flex justify-center">
-                  <Image src={imagePreview} width={280} height={280} alt="Frame layout" className="mt-12" />
+                  <img src={imagePreview} width={280} height={285} alt="Frame layout" className="mt-12 object-fit" />
                 </div>
               </div>
             </div>
