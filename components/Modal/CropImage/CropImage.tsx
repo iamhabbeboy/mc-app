@@ -1,18 +1,11 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import ReactCrop, { Crop, centerCrop, makeAspectCrop } from "react-image-crop";
-import Cropper from "react-easy-crop";
-import EasyCrop from "./EasyCrop";
+import AvatarEditor from 'react-avatar-editor'
 import { ImageSelectionProps } from "../types";
 
 const CropImage = ({ imageSelected }: ImageSelectionProps) => {
-  const [scale, setScale] = useState(1)
-  const [rotate, setRotate] = useState(0)
-  const imgRef = useRef<HTMLImageElement>(null)
-  const [aspect, setAspect] = useState<number | undefined>(16 / 9)
   const [imgSrc, setImgSrc] = useState('/sample.png')
-  const [crop, setCrop] = useState({ x: 0, y: 0 })
-  const [zoom, setZoom] = useState(1)
+  const imageCroppedRef = useRef<any>(null);
 
   const onCropComplete = (croppedArea: any, croppedAreaPixels: any) => {
     console.log(croppedArea, croppedAreaPixels)
@@ -29,14 +22,34 @@ const CropImage = ({ imageSelected }: ImageSelectionProps) => {
     window.dispatchEvent(closeModal);
   }
 
-  const handlePreviewImage = () => {
-    const closeModal = new CustomEvent("open-preview-modal", {
-      detail: {
-        file: imageSelected,
+  const handlePreviewImage = async () => {
+    if (imageCroppedRef.current) {
+      try {
+        const blob = await getCroppedImageBlob() as Blob;
+        const newImage = new File([blob], "filename.jpeg", { type: blob.type, });
+        const closeModal = new CustomEvent("open-preview-modal", {
+          detail: {
+            file: newImage,
+          }
+        });
+        window.dispatchEvent(closeModal);
+      } catch (e) {
+        console.log(e)
       }
-    });
-    window.dispatchEvent(closeModal);
+    }
   }
+
+  const getCroppedImageBlob = () => {
+    return new Promise((resolve, reject) => {
+      return imageCroppedRef.current.getImageScaledToCanvas().toBlob((blob: File) => {
+        if (blob) {
+          resolve(blob);
+        } else {
+          reject(new Error('Failed to get cropped image blob'));
+        }
+      }, 'image/jpeg'); // Specify the image format (e.g., 'image/jpeg')
+    });
+  };
 
   return (
     <div className="overflow-auto h-screen">
@@ -46,20 +59,19 @@ const CropImage = ({ imageSelected }: ImageSelectionProps) => {
         <button onClick={handleCloseCropImage}><Image src="/times.svg" width={40} height={40} alt="Close modal" /> </button>
       </div>
       <div className="bg-black p-10 mt-10">
-        <div className="lg:w-[300px] w-[90%] mx-auto">
-          <img src={imgSrc} alt="" width={384} height={498} style={{width: "100%"}} />
-          {/* <div className=""> */}
-          {/* <EasyCrop  /> */}
-          {/* <Cropper
+        <div className="flex justify-center mx-auto">
+          {/* <img src={imgSrc} alt="" width={384} height={498} style={{width: "100%"}} /> */}
+          <AvatarEditor
             image={imgSrc}
-            crop={crop}
-            zoom={zoom}
-            aspect={4 / 3}
-            onCropChange={setCrop}
-            onCropComplete={onCropComplete}
-            onZoomChange={setZoom}
-          /> */}
-          {/* </div> */}
+            width={384}
+            height={498}
+            border={50}
+            color={[255, 255, 255, 0.6]} // RGBA
+            scale={1.2}
+            rotate={0}
+            ref={imageCroppedRef}
+            disableHiDPIScaling={true}
+          />
         </div>
       </div>
       <div className="mx-auto text-center mt-5 mb-20">
