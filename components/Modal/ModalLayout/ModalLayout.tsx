@@ -1,4 +1,4 @@
-import { Props } from "./types";
+import { Props } from "../types";
 
 const Modal = ({ children, size }: Props) => {
   const defaultSize = size === "default" ? "items-center  flex justify-center": ""; 

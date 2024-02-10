@@ -7,6 +7,11 @@ const ImageUpload = () => {
       window.dispatchEvent(closeModal);
   }
 
+  const handleCropImageModal = () => {
+    const openModal = new CustomEvent("open-crop-image-modal");
+    window.dispatchEvent(openModal);
+  }
+
   return (
     <>
       <div className="mx-auto flex justify-center item-center pt-10">
@@ -26,7 +31,7 @@ const ImageUpload = () => {
               </div>
               <h4 className="text-center font-semibold my-3">Drag image here</h4>
               <p className="my-2">- or - </p>
-              <button className="button button__create text-white py-2 px-7">Upload Image </button>
+              <button className="button button__create text-white py-2 px-7" onClick={handleCropImageModal}>Upload Image </button>
             </div>
           </div>
           <span className="absolute bottom-[-30px] right-[-55px]">

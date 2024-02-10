@@ -11,7 +11,7 @@ const CropImage = () => {
             <div className="mx-auto flex justify-between">
                 <div>{""}</div>
                 <h1 className="modal__title text-center">Pan and crop image</h1>
-                <button onClick={() => handleCloseCropImage}><Image src="/times.svg" width={40} height={40} alt="Close modal" /> </button>
+                <button onClick={handleCloseCropImage}><Image src="/times.svg" width={40} height={40} alt="Close modal" /> </button>
             </div>
             <div className="bg-black p-10 mt-10">
                 <div className="w-[200px] mx-auto">

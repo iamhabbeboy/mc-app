@@ -1,14 +1,16 @@
 import Image from "next/image";
-import CheckBox from "../CheckBox/CheckBox";
+import CheckBox from "../../CheckBox/CheckBox";
 
 const Form = () => {
-  const handleCloseModal = () => {
-    const instructionModal = new CustomEvent("close-form-modal");
+  const handleCloseAllModal = () => {
+    const instructionModal = new CustomEvent("close-all-form-modal");
     window.dispatchEvent(instructionModal);
   };
 
-  const handleCropImage = () => {
-    const openModal = new CustomEvent("close-crop-image-modal");
+  const handleCloseForm = () => {
+    // const openModal = new CustomEvent("open-crop-image-modal");
+    // window.dispatchEvent(openModal);
+    const openModal = new CustomEvent("close-form-modal");
     window.dispatchEvent(openModal);
   }
   return (
@@ -48,9 +50,9 @@ const Form = () => {
           </div>
         </div>
         <div className="mx-auto text-center">
-          <button className="button button__create text-white py-2 px-7" onClick={handleCropImage}>Proceed To Upload Image </button>
+          <button className="button button__create text-white py-2 px-7" onClick={handleCloseForm}>Proceed To Upload Image </button>
           <p className="mt-5">{" "}</p>
-          <button className="button button__outline py-2 px-7" onClick={handleCloseModal}>Go Back </button>
+          <button className="button button__outline py-2 px-7" onClick={handleCloseAllModal}>Go Back </button>
         </div>
       </div>
     </>
