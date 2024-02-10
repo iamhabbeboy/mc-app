@@ -142,6 +142,12 @@ line-height: 44px;
   }
 }
 
+@media (min-width: 1024px) and (max-width: 1400px){
+  .section__layout {
+    width: 80% !important;
+  }
+}
+
 @media only screen and (max-width: 600px){
   .modal__title {
     font-size: 24px;
@@ -155,5 +161,18 @@ line-height: 44px;
   .section__paragraph {
     width: 100%;
     padding: 0px 3px;
+  }
+
+  .button__layout {
+    width: 100%;
+    margin: auto;
+  }
+
+  .button__layout > button {
+    margin-top: 3px;
+  }
+
+  .button__layout > .button__outline {
+    margin-left: 0px;
   }
 }
