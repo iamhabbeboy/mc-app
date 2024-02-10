@@ -91,17 +91,17 @@ export default function Home() {
   return (
     <main>
       <Header />
-      <section className="flex justify-between container mx-auto">
-        <div className="w-4/12">
-          <h1 className="section__title text-5xl mt-48"> Make L<Image src="/love.svg" width={42} height={33} alt="Love shot image" className="inline" />ve </h1>
+      <section className="lg:flex lg:justify-between container mx-auto">
+        <div className="lg:w-4/12 w-full">
+          <h1 className="section__title text-5xl lg:mt-48 mt-20"> Make L<Image src="/love.svg" width={42} height={33} alt="Love shot image" className="inline" />ve </h1>
           <h3 className="text-4xl section__subtext">Possible</h3>
           <p className="section__paragraph">Share your love story and be among 3 lucky couples to win an all-expense-paid dinner this Valentine</p>
-          <div className="flex mt-10">
+          <div className="lg:flex mt-10 w-full">
             <button className="button button__create text-white py-2 px-7" onClick={handleImageUploadModal}>Create Filter Now </button>
             <button className="button button__outline py-2 px-7 ml-10" onClick={handleHowToCreateModal}>How To Create </button>
           </div>
         </div>
-        <div className="hero__image w-6/12">
+        <div className="hero__image lg:w-6/12 w-full">
           {/* <Image src="/love-shot.png" width={654} height={689} alt="Love shot image" /> */}
         </div>
       </section>
