@@ -4,12 +4,9 @@ import AvatarEditor from 'react-avatar-editor'
 import { ImageSelectionProps } from "../types";
 
 const CropImage = ({ imageSelected }: ImageSelectionProps) => {
-  const [imgSrc, setImgSrc] = useState('/sample.png')
+  const [imgSrc, setImgSrc] = useState('/blank.png')
   const imageCroppedRef = useRef<any>(null);
 
-  const onCropComplete = (croppedArea: any, croppedAreaPixels: any) => {
-    console.log(croppedArea, croppedAreaPixels)
-  }
   useEffect(() => {
     if (imageSelected) {
       const url = URL.createObjectURL(imageSelected)

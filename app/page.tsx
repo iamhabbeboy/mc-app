@@ -58,8 +58,17 @@ export default function Home() {
     setPreviewModal(false);
     setImageUploadModal(false);
   }
+  
+  const handleOpenImageUploadModal = () => {
+    setInstructionModal(false);
+    setImageUploadModal(true);
+    setTimeout(() => {
+      setFormModal(true)
+    }, 1000)
+  }
 
   useEffect(() => {
+    window.addEventListener("open-image-upload-modal", handleOpenImageUploadModal);
     window.addEventListener("close-preview-modal", handleClosePreviewModal);
     window.addEventListener("open-preview-modal", handlePreviewModal);
     window.addEventListener("restart-modal", handleRestartModal);
@@ -72,6 +81,7 @@ export default function Home() {
       setImageUploadModal(false)
     });
     return () => {
+      window.addEventListener("open-image-upload-modal", handleOpenImageUploadModal);
       window.addEventListener("close-preview-modal", handleClosePreviewModal);
       window.addEventListener("open-preview-modal", handlePreviewModal);
       window.addEventListener("restart-modal", handleRestartModal);

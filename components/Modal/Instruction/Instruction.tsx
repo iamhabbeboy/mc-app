@@ -5,8 +5,14 @@ const Instruction = () => {
     const instructionModal = new CustomEvent("close-instruction-modal");
     window.dispatchEvent(instructionModal);
   };
+
+  const handleImageUploadModal = () => {
+    const openModal = new CustomEvent("open-image-upload-modal");
+    window.dispatchEvent(openModal);
+  }
+
   return (
-    <div className="overflow-scroll h-screen">
+    <div className="overflow-scroll h-[600px]">
       <div className="mx-auto lg:flex lg:justify-between w-full">
         <div>{""}</div>
         <Image src="./logo.svg" width={154} height={34} alt="Logo image" />
@@ -15,13 +21,22 @@ const Instruction = () => {
       <div className="mx-auto lg:w-[80%] w-full">
         <h1 className="modal__title mt-10 text-center"> How To Create Your <span>Make Love Possible</span> Filter </h1>
         <div className="modal__content">
-          <p>1. Enter the name and location of both you and your partner</p>
-          <p>2. Upload a photo containing you and your partner. Do not use any sexual, illegal or offensive images. Be cool!</p>
-          <p>3. Download your Make Love Possible filter images.</p>
-          <p>4. Share online, including your “story” as caption to your post.</p>
+          <ul className="list-disc">
+            <li><p>Enter the name and location of both you and your partner</p></li>
+            <li><p>Proceed to upload an image of you and your partner and the mcom filter will be added</p></li>
+            <li><p>Download your Make Love Possible image</p></li>
+            <li><p>Share to your Instragram, Facebook or X feeds along with your story</p></li>
+            <li><p>Use the hashtag #makelovepossible and tag @mcomnigeria</p></li>
+            <li><p>Couples must be following @mcomnigeria on all social media platforms</p></li>
+          </ul>
+          <p>
+            N.B: Entries will be judged based on empathy, authenticity and relatability.
+          </p>
+          <p>Submissions close Feb. 12th, 2024 at 11:59 pm and winners will be announced on Feb. 13th.</p>
+          <p>Terms &amp; Conditions apply!</p>
         </div>
         <div className="mx-auto text-center">
-          <button className="button button__create text-white py-2 px-7">Create Filter Now </button>
+          <button className="button button__create text-white py-2 px-7" onClick={handleImageUploadModal}>Create Filter Now </button>
         </div>
       </div>
     </div>
