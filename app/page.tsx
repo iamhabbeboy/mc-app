@@ -92,7 +92,7 @@ export default function Home() {
     <main>
       <Header />
       <section className="lg:flex lg:justify-between container mx-auto">
-        <div className={`lg:w-4/12 sm:w-full md:px-10 section__layout`}>
+        <div className={`lg:w-6/12 sm:w-full md:px-10 section__layout`}>
           <h1 className="section__title text-5xl lg:mt-48 mt-20"> Make L<Image src="/love.svg" width={42} height={33} alt="Love shot image" className="inline" />ve </h1>
           <h3 className="text-4xl section__subtext">Possible</h3>
           <p className="section__paragraph">Share your love story and be among 3 lucky couples to win an all-expense-paid dinner this Valentine</p>
@@ -101,7 +101,7 @@ export default function Home() {
             <button className="button button__outline py-2 px-7 ml-10" onClick={handleHowToCreateModal}>How To Create </button>
           </div>
         </div>
-        <div className="hero__image lg:w-6/12 w-full">
+        <div className="hero__image w-6/12">
           {/* <Image src="/love-shot.png" width={654} height={689} alt="Love shot image" /> */}
         </div>
       </section>
