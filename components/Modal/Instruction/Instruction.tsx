@@ -6,13 +6,13 @@ const Instruction = () => {
     window.dispatchEvent(instructionModal);
   };
   return (
-    <>
-      <div className="mx-auto flex justify-between">
+    <div className="overflow-scroll h-screen">
+      <div className="mx-auto lg:flex lg:justify-between w-full">
         <div>{""}</div>
         <Image src="./logo.svg" width={154} height={34} alt="Logo image" />
         <button onClick={handleCloseModal}><Image src="/times.svg" width={40} height={40} alt="Close modal" /> </button>
       </div>
-      <div className="mx-auto w-[80%]">
+      <div className="mx-auto lg:w-[80%] w-full">
         <h1 className="modal__title mt-10 text-center"> How To Create Your <span>Make Love Possible</span> Filter </h1>
         <div className="modal__content">
           <p>1. Enter the name and location of both you and your partner</p>
@@ -24,7 +24,7 @@ const Instruction = () => {
           <button className="button button__create text-white py-2 px-7">Create Filter Now </button>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 export default Instruction;

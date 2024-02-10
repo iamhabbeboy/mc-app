@@ -2,7 +2,7 @@ import { Props } from "../types";
 
 const Modal = ({ children, size }: Props) => {
   const defaultSize = size === "default" ? "items-center  flex justify-center": ""; 
-  const defaultSizeContent = size === "default" ? "w-[40%]" : "";
+  const defaultSizeContent = size === "default" ? "lg:w-[40%] w-full" : "";
   const mediumSize = size === "medium" ? "mt-5 w-[60%] mx-auto ": "";
   const fullContentSize = size === "full" ? "z-0" : "z-20";
   const fullContent = size === "full" ? "h-screen" : "rounded-[40px] shadow-md p-10";
