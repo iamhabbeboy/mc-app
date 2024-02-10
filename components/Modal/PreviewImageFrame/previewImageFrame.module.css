@@ -25,7 +25,14 @@
         width: 100%;
     }
 }
-
+@media only screen and (max-width: 320px){
+  .image__previewer {
+        width:70%;
+        top: 36px; 
+        left:48px;
+        height:240px;
+    }
+}
 @media only screen and (max-width: 600px){
     .ring__circle {
         display:none;
@@ -34,4 +41,25 @@
     .button__layout {
         width: 100%;
     }
+}
+@media only screen and (min-width: 1500px){
+    .button__layout {
+        width: 40%;
+    }
+}
+
+@media only screen and (min-width: 475px) and (max-width: 1020px) {
+  .image__previewLayout {
+    background-attachment: fixed;
+    height: 800px;
+  }
+
+  .image__previewer {
+    max-width:70%;
+    height: auto;
+    top: 36px; 
+    left:88px;
+    background-size: cover;
+    background-position: center;
+  }
 }

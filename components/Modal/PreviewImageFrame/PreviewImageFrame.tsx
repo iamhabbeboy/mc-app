@@ -7,6 +7,7 @@ import axios from "axios";
 
 const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
   const imageFrameRef = useRef(null);
+  const imageRefPreview = useRef<HTMLDivElement>(null);
   const [imagePreview, setImagePreview] = useState("")
   const [isLoading, setIsLoading] = useState(false);
 
@@ -16,6 +17,9 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
     }
     const image = URL.createObjectURL(imageSelected)
     setImagePreview(image)
+    if(imageRefPreview.current) {
+      imageRefPreview.current.style.backgroundImage = `url(${image || "/sample.png"})`
+    }
   }, [imageSelected]);
 
   const handleDownload = async () => {
@@ -62,6 +66,15 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
     const closeModal = new CustomEvent("close-preview-modal");
     window.dispatchEvent(closeModal);
   }
+
+  const handleEditImage = () => {
+    const openModal = new CustomEvent("open-crop-image-modal",{
+      detail: {
+      file: imageSelected,
+    }});
+    window.dispatchEvent(openModal);
+  }
+
   return (
     <>
       <div className="overflow-auto h-screen">
@@ -75,20 +88,18 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
               <span className={`relative block left-[-380px] ${style.ring__circle}`}>
                 <Image src="/love-circle.svg" width={159} height={132} alt="love circle image" />
               </span>
-              <div className="bg-[url('/frame.png')] bg-no-repeat lg:w-[450px] sm:w-full h-[562px] bg-contain" ref={imageFrameRef}>
-                <div className="flex justify-center overflow-hidden h-[375px]">
-                  <img src={imagePreview} width={280} height={285} alt="Frame layout" className="mt-12 object-cover" />
+              <div className={`bg-[url('/frame.png')] bg-no-repeat lg:w-[450px] sm:w-full h-[562px] bg-contain ${style.image__previewLayout}`} ref={imageFrameRef}>
+                <div ref={imageRefPreview} className={`${style.image__previewer} border bg-no-repeat bg-cover lg:w-[330px] lg:h-[330px] w-[70%] h-[270px] relative top-[56px] left-[58px] `}>
                 </div>
               </div>
             </div>
             <div className="text-center mx-auto mt-5">
               <div className={`flex justify-between my-5 mx-auto text-center ${style.button__layout}`}>
-                <button className="button button__outline py-2 px-7" onClick={() => { }}>Edit Image </button>
-                <button className="button button__outline py-2 px-7" onClick={() => { }}>Edit Love Story </button>
-              </div>
-              <button disabled={isLoading} className="button button__create text-white py-2 px-7" onClick={handleDownload}><span className="inline">Download Images </span>
+                <button className="button button__outline py-2 px-7" onClick={handleEditImage}>Edit Image </button>
+                <button disabled={isLoading} className="button button__create text-white py-2 px-7" onClick={handleDownload}><span className="inline">Download Images </span>
                 <Image src="/download.svg" width={24} height={24} alt="download icon" className="inline" />
               </button>
+              </div>
               {isLoading && <span> <img src="/loader.svg" width={24} height={24} alt="download icon" className="inline" /></span>}
               <div className="mt-5">
                 <div className="mx-auto text-center w-[40%] mb-8">

@@ -46,7 +46,7 @@ const CropImage = ({ imageSelected }: ImageSelectionProps) => {
         <button onClick={handleCloseCropImage}><Image src="/times.svg" width={40} height={40} alt="Close modal" /> </button>
       </div>
       <div className="bg-black p-10 mt-10">
-        <div className="w-[300px] mx-auto">
+        <div className="lg:w-[300px] w-[90%] mx-auto">
           <img src={imgSrc} alt="" width={384} height={498} style={{width: "100%"}} />
           {/* <div className=""> */}
           {/* <EasyCrop  /> */}
