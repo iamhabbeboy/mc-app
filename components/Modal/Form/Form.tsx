@@ -8,6 +8,7 @@ const Form = () => {
   const partnerNameRef = useRef<HTMLInputElement>(null);
   const partnerAddressRef = useRef<HTMLInputElement>(null);
   const [ackStatus, setAckStatus] = useState(false);
+  const [errMessage, setErrMessage] = useState("")
 
   const handleCloseAllModal = () => {
     const instructionModal = new CustomEvent("close-all-form-modal");
@@ -15,27 +16,50 @@ const Form = () => {
   };
 
   const handleCloseForm = () => {
+    const nameRegex = /^[a-zA-Z\s]+$/;
+    const addressRegex = /^[a-zA-Z0-9\s,.-]+$/;
     if (userNameRef.current) {
       if (userNameRef.current.value === "") {
         return userNameRef.current.focus();
       }
+
+      if (!nameRegex.test(userNameRef.current.value)) {
+        setErrMessage("Valid name is required");
+        return userNameRef.current.focus();
+      }
+      setErrMessage("");
     }
     if (userAddressRef.current) {
       if (userAddressRef.current.value === "") {
         return userAddressRef.current.focus();
       }
+      if (!addressRegex.test(userAddressRef.current.value)) {
+        setErrMessage("Valid address is required");
+        return userAddressRef.current.focus();
+      }
+      setErrMessage("");
     }
 
     if (partnerNameRef.current) {
       if (partnerNameRef.current.value === "") {
         return partnerNameRef.current.focus();
       }
+      if (!nameRegex.test(partnerNameRef.current.value)) {
+        setErrMessage("Valid name is required");
+        return partnerNameRef.current.focus();
+      }
+      setErrMessage("");
     }
 
     if (partnerAddressRef.current) {
       if (partnerAddressRef.current.value === "") {
         return partnerAddressRef.current.focus();
       }
+      if (!addressRegex.test(partnerAddressRef.current.value)) {
+        setErrMessage("Valid address is required");
+        return partnerAddressRef.current.focus();
+      }
+      setErrMessage("");
     }
     const payload = {
       user: {
@@ -49,8 +73,10 @@ const Form = () => {
     }
 
     if(ackStatus === false) {
-      return alert("Kindly accept the terms and condition before you proceed!");
+      setErrMessage("Kindly accept the terms and condition before you proceed!");
+      return false;
     }
+    setErrMessage("")
     localStorage.setItem("mcron-data", JSON.stringify(payload));
     const openModal = new CustomEvent("close-form-modal");
     window.dispatchEvent(openModal);
@@ -59,6 +85,7 @@ const Form = () => {
     <div className="">
       <div className="mx-auto lg:w-[80%] w-full">
         <h1 className="modal__title text-center"> Enter details </h1>
+        {errMessage && <p className="text-center text-red-600 font-bold">{errMessage}</p>}
         <h2 className="lg:mt-5 mt-2 lg:text-2xl text-xl text-center">Enter your name and precise address</h2>
         <div className="lg:mt-10 mt-2">
           <div className="lg:flex lg:justify-between">
