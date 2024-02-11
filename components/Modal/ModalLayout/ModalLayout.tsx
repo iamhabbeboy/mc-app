@@ -4,7 +4,7 @@ import 'animate.css';
 const Modal = ({ children, size, className }: Props) => {
   const defaultSize = size === "default" ? "items-center  flex justify-center animate__slideUp": ""; 
   const defaultSizeContent = size === "default" ? "lg:w-[50%] w-full" : "";
-  const mediumSize = size === "medium" ? "mt-5 lg:w-[60%] md:w-[90%] w-full mx-auto ": "";
+  const mediumSize = size === "medium" ? "mt-5 lg:w-[70%] md:w-[90%] w-full mx-auto ": "";
   const fullContentSize = size === "full" ? "z-0" : "z-20";
   const fullContent = size === "full" ? "h-screen" : "rounded-[40px] shadow-md p-10";
 
