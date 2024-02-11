@@ -8,6 +8,7 @@ import Modal from "@/components/Modal/ModalLayout/ModalLayout";
 import PreviewImageFrame from "@/components/Modal/PreviewImageFrame/PreviewImageFrame";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
+import 'animate.css';
 
 export default function Home() {
   const [formModal, setFormModal] = useState(false);
@@ -98,6 +99,25 @@ export default function Home() {
     };
   }, [handleCloseCropImageModal, handleCropImageModal, handleHowToCreateModal, handleImageUploadModal, hanleCloseAllModal]);
 
+  const [formModalTracker, setFormModalTracker] = useState(false);
+  const [initialtrack, setInitialTrack] = useState(false);
+  const [imgUploadTracker, setImgUploadTracker] = useState(false);
+  const [cropImageTracker, setCropImageTracker] = useState(false);
+
+  useEffect(() => {
+    if(instructionModal) {
+      setInitialTrack(true);
+    }
+    if(formModal) {
+      setFormModalTracker(true);
+    }
+    if(imageUploadModal) {
+      setImgUploadTracker(true);
+    }
+    if(closeCropImageModal) {
+      setCropImageTracker(true)
+    }
+  }, [closeCropImageModal, formModal, imageUploadModal, instructionModal])
   return (
     <main>
       <Header />
@@ -115,18 +135,21 @@ export default function Home() {
           <Image src="/love-shot.png" width={654} height={689} alt="Love shot image" />
         </div>
       </section>
-      {instructionModal && <Modal size="default">
+      <Modal size="default"  className={instructionModal ? 'animate__slideInUp' : initialtrack ? 'animate__slideOutDown' :  'hidden'}>
         <Instruction />
-      </Modal>}
-      {formModal && <Modal size="medium">
+      </Modal>
+      
+      <Modal size="medium" className={formModal ? 'animate__slideInUp' : formModalTracker ? 'animate__slideOutDown' :  'hidden'}>
         <Form />
-      </Modal>}
-      {imageUploadModal && <Modal size="full">
+      </Modal>
+
+       <Modal size="full" className={imageUploadModal ? 'animate__slideInRight' : imgUploadTracker ? 'animate__slideOutLeft' :  'hidden'}>
         <ImageUpload />
-      </Modal>}
-      {closeCropImageModal && <Modal size="medium">
+      </Modal>
+
+      <Modal size="medium"  className={closeCropImageModal ? 'animate__slideInUp' : cropImageTracker ? 'animate__slideOutDown' :  'hidden'}>
         <CropImage imageSelected={imageSelected}/>
-      </Modal>}
+      </Modal>
       {previewModal && <Modal size="full">
         <PreviewImageFrame imageSelected={imageSelected} />
       </Modal>}

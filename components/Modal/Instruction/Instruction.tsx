@@ -1,6 +1,16 @@
 import Image from "next/image";
+import { useEffect, useRef } from "react";
+import 'animate.css';
 
 const Instruction = () => {
+  const instructionRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if(instructionRef.current) {
+      instructionRef.current.classList.add('opacity-100') //translate-y-0
+      instructionRef.current.classList.add('translate-y-0');
+    }
+  }, []);
+
   const handleCloseModal = () => {
     const instructionModal = new CustomEvent("close-instruction-modal");
     window.dispatchEvent(instructionModal);
@@ -12,7 +22,7 @@ const Instruction = () => {
   }
 
   return (
-    <div className="overflow-scroll h-[600px] relative top-[100%]">
+    <div className="overflow-scroll h-[600px]" ref={instructionRef}>
       <div className="mx-auto lg:flex lg:justify-between w-full">
         <div>{""}</div>
         <Image src="./logo.svg" width={154} height={34} alt="Logo image" />

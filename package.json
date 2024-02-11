@@ -13,6 +13,7 @@
     "@types/react-avatar-editor": "^13.0.2",
     "@vercel/blob": "^0.21.0",
     "add": "^2.0.6",
+    "animate.css": "^4.1.1",
     "axios": "^1.6.7",
     "html-to-image": "^1.11.11",
     "mongodb": "^6.3.0",
