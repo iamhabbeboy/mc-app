@@ -4,7 +4,7 @@ import AvatarEditor from 'react-avatar-editor'
 import { ImageSelectionProps } from "../types";
 
 const CropImage = ({ imageSelected }: ImageSelectionProps) => {
-  const [imgSrc, setImgSrc] = useState('/blank.png')
+  const [imgSrc, setImgSrc] = useState('/empty.png')
   const imageCroppedRef = useRef<any>(null);
 
   useEffect(() => {

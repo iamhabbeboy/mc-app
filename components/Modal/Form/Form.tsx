@@ -56,7 +56,7 @@ const Form = () => {
     window.dispatchEvent(openModal);
   }
   return (
-    <div className="overflow-auto h-screen">
+    <div className="">
       <div className="mx-auto lg:w-[80%] w-full">
         <h1 className="modal__title text-center"> Enter details </h1>
         <h2 className="lg:mt-5 mt-2 lg:text-2xl text-xl text-center">Enter your name and precise address</h2>
@@ -85,13 +85,13 @@ const Form = () => {
             </div>
           </div>
         </div>
-        <div className="modal__content modal__ack">
+        <div className="modal__content modal__ack overflow-scroll h-[200px]">
           <div className="flex">
             <div><CheckBox setAckStatus={setAckStatus} /></div>
             <div> I understand that my provided information, including names and location, will be used solely for the purpose of generating personalized images for this Valentine&apos;s competition. I acknowledge that my data will be kept confidential and will not be shared with any third parties.</div>
           </div>
         </div>
-        <div className="mx-auto text-center mb-20">
+        <div className="mx-auto text-center lg:mb-20 mb-10">
           <button className="button button__create text-white py-2 px-7" onClick={handleCloseForm}>Proceed To Upload Image </button>
           <p className="mt-5">{" "}</p>
           <button className="button button__outline py-2 px-7" onClick={handleCloseAllModal}>Go Back </button>

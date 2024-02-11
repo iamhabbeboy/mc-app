@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import 'animate.css';
 import "./instruction.module.css";
+import { useRouter } from "next/navigation";
 
 const Instruction = () => {
   const instructionRef = useRef<HTMLDivElement>(null);
@@ -17,10 +18,7 @@ const Instruction = () => {
     window.dispatchEvent(instructionModal);
   };
 
-  const handleImageUploadModal = () => {
-    const openModal = new CustomEvent("open-image-upload-modal");
-    window.dispatchEvent(openModal);
-  }
+  const router = useRouter();
 
   return (
     <div className="" ref={instructionRef}>
@@ -47,7 +45,7 @@ const Instruction = () => {
           <p>Terms &amp; Conditions apply!</p>
         </div>
         <div className="mx-auto text-center">
-          <button className="button button__create text-white py-2 px-7" onClick={handleImageUploadModal}>Create Filter Now </button>
+          <button className="button button__create text-white py-2 px-7" onClick={() => router.push("/create-filter")}>Create Filter Now </button>
         </div>
       </div>
     </div>
