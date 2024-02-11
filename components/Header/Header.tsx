@@ -7,16 +7,16 @@ const Header = () => {
       <div className="container mx-auto flex justify-between">
         <div><Image src="./logo.svg" width={154} height={34} alt="Logo image" /></div>
         <div className={style.header__layout}>
-          <Link href="#" className="inline-block">
+          <Link href="https://www.facebook.com/profile.php?id=61550987756051&mibextid=LQQJ4d" target="_blank" className="inline-block">
             <Image src="./social-icons/facebook.svg" width={24} height={24} alt="facebook icon" />
           </Link>
-          <Link href="#" className="inline-block">
+          <Link href="https://x.com/mcomnigeria?s=21&t=PZ3i1ayGP4wtCWdetiJ7nw" target="_blank" className="inline-block">
             <Image src="./social-icons/x.svg" width={24} height={24} alt="x icon" />
           </Link>
-          <Link href="#" className="inline-block">
+          <Link href="https://instagram.com/mcomnigeria?igshid=MmVlMjlkMTBhMg==" target="_blank" className="inline-block">
             <Image src="./social-icons/instagram.svg" width={24} height={24} alt="instagram icon" />
           </Link>
-          <Link href="#" className="inline-block">
+          <Link href="https://www.linkedin.com/company/mcom-nigeria/" target="_blank" className="inline-block">
             <Image src="./social-icons/linkedin.svg" width={24} height={24} alt="linkedin icon" />
           </Link>
         </div>
