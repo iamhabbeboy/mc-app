@@ -48,18 +48,17 @@
     }
 }
 
-@media only screen and (min-width: 475px) and (max-width: 1020px) {
-  .image__previewLayout {
-    background-size: 100% 100%;
-    height: 800px;
-  }
+/*@media only screen and (min-width: 475px) and (max-width: 1020px) {
+    .image__previewLayout {
+        height: 800px;
+        background-position: center;
+        background-color: transparent;
+    }
 
   .image__previewer {
     max-width:70%;
     height: 400px;
     top: 96px; 
-    left:88px;
-    background-size: cover;
-    background-position: center;
+    left: 158px !important;
   }
-}
+}*/
