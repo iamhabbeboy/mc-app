@@ -1,0 +1,13 @@
+.header__layout {
+}
+.header__layout > a {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+ @media (max-width: 384px) {
+    .header__layout > a {
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+    }
+}

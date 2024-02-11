@@ -1,18 +1,12 @@
 "use client";
-import Header from "@/components/Header/Header";
 import CropImage from "@/components/Modal/CropImage/CropImage";
 import Form from "@/components/Modal/Form/Form";
 import ImageUpload from "@/components/Modal/ImageUpload/ImageUpload";
-import Instruction from "@/components/Modal/Instruction/Instruction";
 import Modal from "@/components/Modal/ModalLayout/ModalLayout";
 import PreviewImageFrame from "@/components/Modal/PreviewImageFrame/PreviewImageFrame";
-import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
-import 'animate.css';
-import { useRouter } from 'next/navigation'
-import style from "./home.module.css"
 
-export default function Home() {
+const CreateFilter = () => {
   const [formModal, setFormModal] = useState(false);
   const [restartModal, setRestartModal] = useState(false);
   const [instructionModal, setInstructionModal] = useState(false);
@@ -20,13 +14,7 @@ export default function Home() {
   const [closeCropImageModal, setCloseCropImageModal] = useState(false);
   const [previewModal, setPreviewModal] = useState(false);
   const [imageSelected, setImageSelected] = useState(null);
-
-  const router = useRouter();
-
-  const handleHowToCreateModal = useCallback(() => {
-    setInstructionModal(!instructionModal);
-  }, [instructionModal]);
-
+  
   const handleCropImageModal = useCallback((data: any) => {
     setImageSelected(data.detail.file);
     if (closeCropImageModal === true) {
@@ -81,6 +69,10 @@ export default function Home() {
   }
 
   useEffect(() => {
+    setFormModal(true);
+  }, [])
+
+  useEffect(() => {
     window.addEventListener("edit-image-upload-modal", handleImageEditUploadModal);
     window.addEventListener("open-image-upload-modal", handleOpenImageUploadModal);
     window.addEventListener("close-preview-modal", handleClosePreviewModal);
@@ -88,7 +80,6 @@ export default function Home() {
     window.addEventListener("restart-modal", handleRestartModal);
     window.addEventListener("close-all-form-modal", hanleCloseAllModal);
     window.addEventListener("close-form-modal", () => setFormModal(false));
-    window.addEventListener("close-instruction-modal", handleHowToCreateModal);
     window.addEventListener("open-crop-image-modal", handleCropImageModal);
     window.addEventListener("close-crop-image-modal", handleCloseCropImageModal);
     window.addEventListener("close-image-upload-modal", () => {
@@ -103,7 +94,6 @@ export default function Home() {
       window.addEventListener("close-all-form-modal", hanleCloseAllModal);
       window.addEventListener("close-crop-image-modal", handleCloseCropImageModal);
       window.addEventListener("open-crop-image-modal", handleCropImageModal);
-      window.removeEventListener("close-instruction-modal", handleHowToCreateModal);
       window.addEventListener("close-form-modal", () => {
         setFormModal(false)
       });
@@ -111,38 +101,46 @@ export default function Home() {
         setImageUploadModal(false)
       });
     };
-  }, [handleCloseCropImageModal, handleCropImageModal, handleHowToCreateModal, handleImageUploadModal, hanleCloseAllModal]);
+  }, [handleCloseCropImageModal, handleCropImageModal, handleImageUploadModal, hanleCloseAllModal]);
 
   const [formModalTracker, setFormModalTracker] = useState(false);
   const [initialtrack, setInitialTrack] = useState(false);
-
+  const [imgUploadTracker, setImgUploadTracker] = useState(false);
+  const [cropImageTracker, setCropImageTracker] = useState(false);
+  
   useEffect(() => {
     if(instructionModal) {
       setInitialTrack(true);
     }
+    if(formModal) {
+      setFormModalTracker(true);
+    }
+    if(imageUploadModal) {
+      setImgUploadTracker(true);
+    }
+    if(closeCropImageModal) {
+      setCropImageTracker(true)
+    }
   }, [closeCropImageModal, formModal, imageUploadModal, instructionModal])
-
+  
   return (
-    <main>
-      <Header />
-      <section className="lg:flex lg:justify-between container mx-auto">
-        <div className={`lg:w-6/12 sm:w-full md:px-10 section__layout`}>
-          <h1 className="section__title text-5xl lg:mt-48 mt-20"> Make L<Image src="/love.svg" width={42} height={33} alt="Love shot image" className="inline" />ve </h1>
-          <h3 className="text-4xl section__subtext">Possible</h3>
-          <p className="section__paragraph">Share your love story and be among 3 lucky couples to win an all-expense-paid dinner this Valentine</p>
-          <div className={`mt-10 w-full ${style.home__button} button__layout`}> 
-            <button className="button button__create text-white py-2 px-7" onClick={() => router.push("/create-filter")}>Create Filter Now </button>
-            <button className="button button__outline py-2 px-7 ml-10" onClick={handleHowToCreateModal}>How To Create </button>
-          </div>
-        </div>
-        <div className="lg:w-6/12 w-full pt-3">
-            <img src="/love-shot.png" width={654} height={689} alt="Love shot image" />
-          {/* <img srcset="/love-shot.png 240w, medium.png 480w, /love-shot.png 960w" sizes="(min-width: 36em) 33.3vw,100vw" src="/love-shot.png" /> */}
-        </div>
-      </section>
-      <Modal size="default"  className={instructionModal ? 'animate__slideInUp' : initialtrack ? 'animate__slideOutDown' :  'hidden'}>
-        <Instruction />
+    <>
+      <ImageUpload />
+      <Modal size="medium" className={formModal ? 'animate__slideInUp' : formModalTracker ? 'animate__slideOutDown' :  'hidden'}>
+        <Form />
       </Modal>
-    </main>
-  );
+
+       <Modal size="full" className={imageUploadModal ? 'animate__slideInRight' : imgUploadTracker ? 'animate__slideOutLeft' :  'hidden'}>
+        <ImageUpload />
+      </Modal>
+
+      <Modal size="medium"  className={closeCropImageModal ? 'animate__slideInUp' : cropImageTracker ? 'animate__slideOutDown' :  'hidden'}>
+        <CropImage imageSelected={imageSelected}/>
+      </Modal>
+      {previewModal && <Modal size="full">
+        <PreviewImageFrame imageSelected={imageSelected} />
+      </Modal>}
+    </>
+  )
 }
+export default CreateFilter;

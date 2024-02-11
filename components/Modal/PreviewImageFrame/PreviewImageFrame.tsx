@@ -88,7 +88,7 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
               <span className={`relative block left-[-380px] ${style.ring__circle}`}>
                 <Image src="/love-circle.svg" width={159} height={132} alt="love circle image" />
               </span>
-              <div className={`bg-[url('/frame.png')] bg-no-repeat lg:w-[450px] sm:w-full lg:h-[562px] bg-red-500 h-[495px] bg-contain ${style.image__previewLayout}`} ref={imageFrameRef}>
+              <div className={`bg-[url('/frame.png')] border bg-no-repeat lg:w-[450px] sm:w-full lg:h-[562px] bg-red-500 h-[495px] bg-contain ${style.image__previewLayout}`} ref={imageFrameRef}>
                 <div ref={imageRefPreview} className={`${style.image__previewer} bg-no-repeat bg-center bg-contain lg:w-[330px] lg:h-[330px] w-[70%] h-[270px] relative top-[56px] left-[58px] `}>
                 </div>
               </div>

@@ -59,27 +59,27 @@ const Form = () => {
     <div className="overflow-auto h-screen">
       <div className="mx-auto lg:w-[80%] w-full">
         <h1 className="modal__title text-center"> Enter details </h1>
-        <h2 className="mt-5 text-2xl text-center">Enter your name and precise address</h2>
-        <div className="mt-10">
-          <div className="flex justify-between">
-            <div className="w-[45%]">
+        <h2 className="lg:mt-5 mt-2 lg:text-2xl text-xl text-center">Enter your name and precise address</h2>
+        <div className="lg:mt-10 mt-2">
+          <div className="lg:flex lg:justify-between">
+            <div className="lg:w-[45%] w-full">
               <label>Your Name</label>
               <input type="text" className="input-form rounded-full px-4 py-2 w-full" placeholder="eg Jerry" ref={userNameRef} />
             </div>
-            <div className="w-[45%]">
+            <div className="lg:w-[45%] w-full">
               <label>Your Address</label>
               <input type="text" className="input-form rounded-full px-4 py-2 w-full" placeholder="eg 3, Oni street, Alausa, Ikeja.Lagos" ref={userAddressRef} />
             </div>
           </div>
         </div>
-        <h2 className="mt-5 text-2xl text-center">Enter your partner&apos;s name and precise address</h2>
-        <div className="mt-5">
-          <div className="flex justify-between">
-            <div className="w-[45%]">
+        <h2 className="lg:mt-5 mt-2 lg:text-2xl text-xl text-center">Enter your partner&apos;s name and precise address</h2>
+        <div className="lg:mt-5 mt-2">
+          <div className="lg:flex lg:justify-between">
+            <div className="lg:w-[45%] w-full">
               <label>Your Name</label>
               <input type="text" className="input-form rounded-full px-4 py-2 w-full" placeholder="eg Jerry" ref={partnerNameRef} />
             </div>
-            <div className="w-[45%]">
+            <div className="lg:w-[45%] w-full">
               <label>Your Address</label>
               <input type="text" className="input-form rounded-full px-4 py-2 w-full" placeholder="eg 3, Oni street, Alausa, Ikeja.Lagos" ref={partnerAddressRef} />
             </div>

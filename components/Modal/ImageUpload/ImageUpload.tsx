@@ -53,7 +53,7 @@ const ImageUpload = () => {
 return (
   <>
     <div className="mx-auto flex justify-center item-center pt-10">
-      <button onClick={handleCloseImageUploadModal}><Image src="./logo.svg" width={154} height={34} alt="Logo image" /></button>
+      <button onClick={() => window.location.href = "/"}><Image src="./logo.svg" width={154} height={34} alt="Logo image" /></button>
     </div>
     <div className="bg-[url('/pattern-2.png')] h-[300px] fixed bottom-0 w-full">
       <div className="relative bottom-[400px] mx-auto lg:w-[60%] w-full">

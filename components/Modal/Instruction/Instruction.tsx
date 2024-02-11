@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import 'animate.css';
+import "./instruction.module.css";
 
 const Instruction = () => {
   const instructionRef = useRef<HTMLDivElement>(null);
@@ -22,15 +23,15 @@ const Instruction = () => {
   }
 
   return (
-    <div className="overflow-scroll h-[600px]" ref={instructionRef}>
-      <div className="mx-auto lg:flex lg:justify-between w-full">
-        <div>{""}</div>
+    <div className="" ref={instructionRef}>
+      <div className="mx-auto flex justify-between w-full">
+        <div className="modal__emptyspace">{""}</div>
         <Image src="./logo.svg" width={154} height={34} alt="Logo image" />
         <button onClick={handleCloseModal}><Image src="/times.svg" width={40} height={40} alt="Close modal" /> </button>
       </div>
       <div className="mx-auto lg:w-[80%] w-full">
         <h1 className="modal__title mt-10 text-center"> How To Create Your <span>Make Love Possible</span> Filter </h1>
-        <div className="modal__content">
+        <div className="modal__content overflow-scroll h-[200px]">
           <ul className="list-disc">
             <li><p>Enter the name and location of both you and your partner</p></li>
             <li><p>Proceed to upload an image of you and your partner and the mcom filter will be added</p></li>
