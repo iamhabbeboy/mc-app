@@ -6,6 +6,7 @@ import { ImageSelectionProps } from "../types";
 const CropImage = ({ imageSelected }: ImageSelectionProps) => {
   const [imgSrc, setImgSrc] = useState('/empty.png')
   const imageCroppedRef = useRef<any>(null);
+  const [imgPreview, setImagePreview] = useState("")
 
   useEffect(() => {
     if (imageSelected) {
@@ -29,6 +30,7 @@ const CropImage = ({ imageSelected }: ImageSelectionProps) => {
       try {
         const blob = await getCroppedImageBlob() as Blob;
         const newImage = new File([blob], "filename.jpeg", { type: blob.type, });
+        const image = URL.createObjectURL(newImage)
         const closeModal = new CustomEvent("open-preview-modal", {
           detail: {
             file: newImage,
@@ -43,7 +45,7 @@ const CropImage = ({ imageSelected }: ImageSelectionProps) => {
 
   const getCroppedImageBlob = () => {
     return new Promise((resolve, reject) => {
-      return imageCroppedRef.current.getImageScaledToCanvas().toBlob((blob: File) => {
+      return imageCroppedRef.current.getImage().toBlob((blob: File) => {
         if (blob) {
           resolve(blob);
         } else {
@@ -65,8 +67,8 @@ const CropImage = ({ imageSelected }: ImageSelectionProps) => {
           {/* <img src={imgSrc} alt="" width={384} height={498} style={{width: "100%"}} /> */}
           <AvatarEditor
             image={imgSrc}
-            width={384}
-            height={498}
+            width={350}
+            height={350}
             border={50}
             color={[255, 255, 255, 0.6]} // RGBA
             scale={1.2}
@@ -75,6 +77,9 @@ const CropImage = ({ imageSelected }: ImageSelectionProps) => {
             disableHiDPIScaling={true}
           />
         </div>
+        {/* <div>preview here 
+          <img src={imgPreview} />
+        </div> */}
       </div>
       <div className="mx-auto text-center mt-5 mb-20">
         <button className="button button__create text-white py-2 px-7" onClick={handlePreviewImage}>Done </button>

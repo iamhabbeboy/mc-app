@@ -42,7 +42,9 @@ const CreateFilter = () => {
     setRestartModal(false)
   }
 
-  const handlePreviewModal = () => {
+  const handlePreviewModal = (data: any) => {
+    setImageSelected(data.detail.file);
+    // console.log(data)
     setCloseCropImageModal(false);
     setPreviewModal(true);
   }
