@@ -19,6 +19,11 @@ const CropImage = ({ imageSelected }: ImageSelectionProps) => {
     window.dispatchEvent(closeModal);
   }
 
+  const handleUploadImage = () => {
+    const openModal = new CustomEvent("edit-image-upload-modal");
+    window.dispatchEvent(openModal);
+  }
+
   const handlePreviewImage = async () => {
     if (imageCroppedRef.current) {
       try {
@@ -74,7 +79,7 @@ const CropImage = ({ imageSelected }: ImageSelectionProps) => {
       <div className="mx-auto text-center mt-5 mb-20">
         <button className="button button__create text-white py-2 px-7" onClick={handlePreviewImage}>Done </button>
         <p className="mt-5">{" "}</p>
-        <button className="button button__outline py-2 px-7" onClick={() => { }}>Re-Upload Image </button>
+        <button className="button button__outline py-2 px-7" onClick={handleUploadImage}>Re-Upload Image </button>
       </div>
       <div className="py-10">{" "} </div>
     </div>
