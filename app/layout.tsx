@@ -25,7 +25,7 @@ const rilenoSans = localFont({
   ]});
 
 export const metadata: Metadata = {
-  title: "Welcome to mcrom - Make love possible",
+  title: "Welcome to mcom - Make love possible",
   icons: "",
   description: "Share your love story and be among 3 lucky couples to win an all-expense-paid dinner this Valentine",
 };
