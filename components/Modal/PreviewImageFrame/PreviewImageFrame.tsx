@@ -27,23 +27,25 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
   const handleDownload = async () => {
     // call api endpoint 
     storeUserInformation();
-    // if (imageFrameRef.current) {
-    //     htmlToImage.toPng(imageFrameRef.current)
-    //       .then(function (dataUrl) {
-    //         const link = document.createElement('a');
-    //         link.href = dataUrl;
-    //         link.download = 'mcom-love-possible.png';
-    //         link.click();
-    //       })
-    //       .catch(function (error) {
-    //         console.error(error);
-    //         alert('Error occured, kindly refresh the page and try again.');
-    //       });
-    // }
+    if(userInfo) {
+      if (imageFrameRef.current) {
+          htmlToImage.toPng(imageFrameRef.current)
+            .then(function (dataUrl) {
+              const link = document.createElement('a');
+              link.href = dataUrl;
+              link.download = 'mcom-love-possible.png';
+              link.click();
+            })
+            .catch(function (error) {
+              console.error(error);
+              alert('Error occured, kindly refresh the page and try again.');
+            });
+      }
+  }
   }
 
   const storeUserInformation = async () => {
-    // setIsLoading(true);
+    setIsLoading(true);
     const user = JSON.parse(localStorage.getItem("mcom-data") || "");
     console.log(user)
     if(!user || !imageSelected) {
