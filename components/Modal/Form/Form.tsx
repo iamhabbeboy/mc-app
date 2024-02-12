@@ -96,7 +96,7 @@ const Form = () => {
               <label>Your Name</label>
               <input type="text" className="input-form rounded-full px-4 py-2 w-full" placeholder="eg Jerry" ref={userNameRef} />
             </div>
-            <div className="lg:w-[45%] w-full">
+            <div className="lg:w-[45%] w-full my-5 lg:my-0 sm:my-5">
               <label>Your Address</label>
               <input type="text" className="input-form rounded-full px-4 py-2 w-full" placeholder="eg 3, Oni street, Alausa, Ikeja.Lagos" ref={userAddressRef} />
             </div>
@@ -105,12 +105,12 @@ const Form = () => {
         <h2 className="lg:mt-5 mt-2 lg:text-2xl text-xl text-center">Enter your partner&apos;s name and precise address</h2>
         <div className="lg:mt-5 mt-2">
           <div className="lg:flex lg:justify-between">
-            <div className="lg:w-[45%] w-full">
-              <label>Your Name</label>
+            <div className="lg:w-[45%] w-full my-5 lg:my-0 sm:my-5 ">
+              <label className="sm:my-3">Your Partner&apos;s Name</label>
               <input type="text" className="input-form rounded-full px-4 py-2 w-full" placeholder="eg Jerry" ref={partnerNameRef} />
             </div>
-            <div className="lg:w-[45%] w-full">
-              <label>Your Address</label>
+            <div className="lg:w-[45%] w-full my-5 lg:my-0 sm:my-5 ">
+              <label className="my-5">Your Partner&apos;s Address</label>
               <input type="text" className="input-form rounded-full px-4 py-2 w-full" placeholder="eg 3, Oni street, Alausa, Ikeja.Lagos" ref={partnerAddressRef} />
             </div>
           </div>

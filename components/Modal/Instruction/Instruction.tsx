@@ -41,7 +41,7 @@ const Instruction = () => {
           <p>
             N.B: Entries will be judged based on empathy, authenticity and relatability.
           </p>
-          <p>Submissions close Feb. 12th, 2024 at 11:59 pm.</p>
+          <p>Submissions close Feb. 14th, 2024 at 11:59 pm.</p>
           <p>One couple will be selected from each of the following locations (Lagos, Abuja, Port Harcourt & Kano) and winners will be announced on Feb. 16th, 2024.</p>
           <p>Terms &amp; Conditions apply!</p>
         </div>
