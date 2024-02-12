@@ -121,11 +121,15 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
                 <div className={`bg-no-repeat bg-center bg-contain lg:w-[350px] lg:h-[350px] w-[76%] h-[270px] relative top-[42px] left-[44px] lg:top-[46px] lg:left-[48px]`}>
                   <Image src={imagePreview} width={350} height={350} alt="" className="object-cover"/>
                 </div> */}
-                <div className={`bg-[url('/frame.png')] bg-no-repeat lg:w-[450px] sm:w-full lg:h-[562px] bg-red-500 h-[495px] bg-contain mx-auto ${style.image__previewLayout}`} ref={imageFrameRef}>
-                  <div className={`bg-no-repeat bg-center bg-contain lg:w-[350px] lg:h-[350px] w-[76%] h-[270px] relative top-[42px] left-[44px] lg:top-[46px] lg:left-[48px]`}>
+                <div className={`bg-[url('/frame.png')] bg-no-repeat lg:w-[450px] sm:w-full lg:h-[562px] h-[495px] bg-contain mx-auto ${style.image__previewLayout}`} ref={imageFrameRef}>
+                  {/* Works well for mobile screens */}
+                  {/* <div className={`bg-no-repeat bg-center bg-contain lg:w-[350px] lg:h-[350px] w-[80.5%] h-[270px] relative top-[38px] left-[37.5px] lg:top-[46px] lg:left-[48px]`}>
                     <Image src={imagePreview} width={350} height={350} alt="" className="object-cover" />
+                  </div> */}
+
+                  <div className={`bg-no-repeat bg-center bg-contain lg:w-[370px] lg:h-[380px] w-[80.5%] h-[270px] relative top-[38px] left-[37.5px] lg:top-[42px] lg:left-[42px]`}>
+                    <Image src={imagePreview} width={380} height={380} alt="" className="object-cover" />
                   </div>
-                {/* </div> */}
               </div>
             </div>
             </div>
