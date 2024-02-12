@@ -58,7 +58,7 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
         'Content-Type': 'multipart/form-data'
       }})
       const response = resp.data;
-      setUserInfo(response);
+      setUserInfo(response.data);
     }catch(e) {
       alert("Error occured, kindly try again")
     }
@@ -68,6 +68,26 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
   const handleRestartProcess = () => {
     const closeModal = new CustomEvent("restart-modal");
     window.dispatchEvent(closeModal);
+  }
+
+  const handleShare = (sn: string) => {
+    const image = userInfo?.image as string
+    if(!userInfo) {
+      storeUserInformation();
+    }
+    let fbUrl = '';
+    if(sn === "facebook") {
+      fbUrl = `https://www.facebook.com/share.php?u=${encodeURIComponent(image)}`;
+    } else if (sn === "twitter") {
+      fbUrl = `http://x.com/share?&media=${image}`
+    } else if(sn === "instagram") {
+      fbUrl = `https://www.instagram.com/?url=${encodeURIComponent(image)}`;
+    }
+    const windowFeatures = "left=100,top=100,width=320,height=320";
+    const handle = window.open(fbUrl, "_blank", windowFeatures);
+    if(!handle) {
+      window.location.href = fbUrl;
+    }
   }
 
   const handleCloseAll = () => {
@@ -123,13 +143,13 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
                   <hr className="mt-5" />
                 </div>
                 <div className="flex justify-between mx-auto text-center lg:w-[20%] w-[70%]">
-                  <div className={`rounded-full w-[40px] h-[40px] pt-1 cursor-pointer ${style.social__instagram}`}>
+                  <div className={`rounded-full w-[40px] h-[40px] pt-1 cursor-pointer ${style.social__instagram}`} onClick={() => handleShare("instagram")}>
                     <Image src="/social-icons/instagram-fill.svg" width={24} height={24} alt="instagram icon" className="inline" />
                   </div>
-                  <div className="rounded-full w-[40px] h-[40px] pt-1 bg-black cursor-pointer">
+                  <div className="rounded-full w-[40px] h-[40px] pt-1 bg-black cursor-pointer" onClick={() => handleShare("twitter")}>
                     <Image src="/social-icons/x-fill.svg" width={24} height={24} alt="instagram icon" className="inline" />
                   </div>
-                  <div className="rounded-full w-[40px] h-[40px] pt-1 bg-blue-500 cursor-pointer">
+                  <div className="rounded-full w-[40px] h-[40px] pt-1 bg-blue-500 cursor-pointer" onClick={() => handleShare("facebook")}>  
                     <Image src="/social-icons/facebook-fill.svg" width={24} height={24} alt="instagram icon" className="inline" />
                   </div>
                 </div>

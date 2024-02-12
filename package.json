@@ -24,6 +24,7 @@
     "react-dropzone": "^14.2.3",
     "react-easy-crop": "^5.0.5",
     "react-image-crop": "^11.0.5",
+    "react-share": "^5.1.0",
     "vercel": "^33.5.0",
     "yarn": "^1.22.21"
   },
