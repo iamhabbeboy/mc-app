@@ -1,6 +1,7 @@
 import Image from "next/image";
 import CheckBox from "../../CheckBox/CheckBox";
 import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Form = () => {
   const userNameRef = useRef<HTMLInputElement>(null);
@@ -9,6 +10,8 @@ const Form = () => {
   const partnerAddressRef = useRef<HTMLInputElement>(null);
   const [ackStatus, setAckStatus] = useState(false);
   const [errMessage, setErrMessage] = useState("")
+
+  const route = useRouter();
 
   const handleCloseAllModal = () => {
     const instructionModal = new CustomEvent("close-all-form-modal");
@@ -121,7 +124,7 @@ const Form = () => {
         <div className="mx-auto text-center lg:mb-20 mb-10">
           <button className="button button__create text-white py-2 px-7" onClick={handleCloseForm}>Proceed To Upload Image </button>
           <p className="mt-5">{" "}</p>
-          <button className="button button__outline py-2 px-7" onClick={handleCloseAllModal}>Go Back </button>
+          <button className="button button__outline py-2 px-7" onClick={() => route.push("/")}>Go Back </button>
         </div>
       </div>
     </div>

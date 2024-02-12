@@ -191,6 +191,7 @@ line-height: 44px;
 
   .section__title, .section__subtext {
     font-size: 44px;
+    line-height: 50px;
   }
 
   .section__paragraph {
