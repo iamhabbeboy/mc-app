@@ -4,12 +4,14 @@ import * as htmlToImage from 'html-to-image';
 import { useEffect, useRef, useState } from "react";
 import { ImageSelectionProps } from "../types";
 import axios from "axios";
+import { User } from "@/app/types";
 
 const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
   const imageFrameRef = useRef(null);
   const imageRefPreview = useRef<HTMLDivElement>(null);
   const [imagePreview, setImagePreview] = useState("")
   const [isLoading, setIsLoading] = useState(false);
+  const [userInfo, setUserInfo] = useState<User>();
 
   useEffect(() => {
     if(!imageSelected) {
@@ -42,18 +44,23 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
 
   const storeUserInformation = async () => {
     setIsLoading(true);
-    const user = JSON.parse(localStorage.getItem("mcron-data") || "");
+    const user = JSON.parse(localStorage.getItem("mcon-data") || "");
     if(!user || !imageSelected) {
       return alert("Error occured while processing your data, try again by refreshing the page");
     }
-    // const formData = new FormData();
-    // formData.append("user", JSON.stringify(user));
-    // formData.append("image", imageSelected);
-    // const resp = await axios.post('/user', formData, {
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data'
-    //   }})
-    // console.log(resp)
+    const formData = new FormData();
+    formData.append("user", JSON.stringify(user));
+    formData.append("image", imageSelected);
+    try {
+    const resp = await axios.post('/user', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }})
+      const response = resp.data;
+      setUserInfo(response);
+    }catch(e) {
+      alert("Error occured, kindly try again")
+    }
     setIsLoading(false);
   }
 
@@ -89,10 +96,14 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
                 <Image src="/love-circle.svg" width={159} height={132} alt="love circle image" />
               </span>
               <div className="w-[400px] mx-auto">
-              <div className={`bg-[url('/frame.png')] bg-no-repeat lg:w-[450px] sm:w-full lg:h-[562px] bg-red-500 h-[495px] bg-contain mx-auto ${style.image__previewLayout}`} ref={imageFrameRef}>
+              {/* <div className={`bg-[url('/frame.png')] bg-no-repeat lg:w-[450px] sm:w-full lg:h-[562px] bg-red-500 h-[495px] bg-contain mx-auto ${style.image__previewLayout}`} ref={imageFrameRef}>
                 <div className={`bg-no-repeat bg-center bg-contain lg:w-[350px] lg:h-[350px] w-[76%] h-[270px] relative top-[42px] left-[44px] lg:top-[46px] lg:left-[48px]`}>
                   <Image src={imagePreview} width={350} height={350} alt="" className="object-cover"/>
-                </div>
+                </div> */}
+                <div className={`bg-[url('/frame.png')] bg-no-repeat lg:w-[450px] sm:w-full lg:h-[562px] bg-red-500 h-[495px] bg-contain mx-auto ${style.image__previewLayout}`} ref={imageFrameRef}>
+                  <div className={`bg-no-repeat bg-center bg-contain lg:w-[350px] lg:h-[350px] w-[76%] h-[270px] relative top-[42px] left-[44px] lg:top-[46px] lg:left-[48px]`}>
+                    <Image src={imagePreview} width={350} height={350} alt="" className="object-cover" />
+                  </div>
                 {/* </div> */}
               </div>
             </div>

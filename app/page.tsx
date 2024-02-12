@@ -129,7 +129,7 @@ export default function Home() {
         <div className={`lg:w-6/12 sm:w-full md:px-10 section__layout`}>
           <h1 className="section__title text-5xl lg:mt-48 mt-20"> Make L<Image src="/love.svg" width={42} height={33} alt="Love shot image" className="inline" />ve </h1>
           <h3 className="text-4xl section__subtext">Possible</h3>
-          <p className="section__paragraph">Share your love story and be among 3 lucky couples to win an all-expense-paid dinner this Valentine</p>
+          <p className="section__paragraph">Share your love story and be among 4 lucky couples to win an all-expense-paid dinner this Valentine</p>
           <div className={`mt-10 w-full ${style.home__button} button__layout`}> 
             <button className="button button__create text-white py-2 px-7" onClick={() => router.push("/create-filter")}>Create Filter Now </button>
             <button className="button button__outline py-2 px-7 ml-10" onClick={handleHowToCreateModal}>How To Create </button>
