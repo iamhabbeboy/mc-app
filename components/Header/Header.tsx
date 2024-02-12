@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import style from "./header.module.css"
+import Script from "next/script";
 const Header = () => {
   return (
+    <>
+    <Script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module" />
     <div className="w-full p-5">
       <div className="container mx-auto flex justify-between">
         <div><Image src="./logo.svg" width={154} height={34} alt="Logo image" /></div>
@@ -22,6 +25,7 @@ const Header = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

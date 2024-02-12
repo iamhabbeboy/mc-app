@@ -136,6 +136,10 @@ export default function Home() {
           </div>
         </div>
         <div className="lg:w-6/12 w-full pt-3">
+          <div className="absolute">
+            <iframe className="hidden sm:hidden md:block lg:block relative top-[-55px] left-[40px]" src="https://lottie.host/embed/8d95feaa-3839-44ef-973f-3d1c12e2324e/lSlaLwdhIt.json"></iframe>
+            <iframe className="hidden sm:hidden md:block lg:block relative top-[-200px] left-[350px]" src="https://lottie.host/embed/8d95feaa-3839-44ef-973f-3d1c12e2324e/lSlaLwdhIt.json"></iframe>
+          </div>
             <img src="/love-shot.png" width={654} height={689} alt="Love shot image" />
           {/* <img srcset="/love-shot.png 240w, medium.png 480w, /love-shot.png 960w" sizes="(min-width: 36em) 33.3vw,100vw" src="/love-shot.png" /> */}
         </div>
