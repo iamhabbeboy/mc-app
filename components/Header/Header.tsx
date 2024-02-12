@@ -22,8 +22,10 @@ const Header = () => {
           <Link href="https://www.linkedin.com/company/mcom-nigeria/" target="_blank" className="inline-block">
             <Image src="./social-icons/linkedin.svg" width={24} height={24} alt="linkedin icon" />
           </Link>
+          <Link href="https://mcom.ng/shop" target="_blank" className="ml-3 header__linkbutton hidden sm:hidden lg:inline-block md:inline-block"> Visit mcrom Shop</Link>
         </div>
       </div>
+      <Link href="https://mcom.ng/shop" target="_blank" className="header__linkbutton block mt-5 text-center w-full sm:block lg:hidden md:hidden"> Visit mcrom Shop</Link>
     </div>
     </>
   )

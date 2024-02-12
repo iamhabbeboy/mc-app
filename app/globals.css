@@ -12,6 +12,7 @@
   --white: #FFF;
   --orange: #FFBA08;
   --white-linear: linear-gradient(180deg, #F0F0F0 0%, #FFF 100%);
+  --custom-orange-linear: linear-gradient(98.24deg, #FF3100 1.98%, #FF7D05 95.16%);
 }
 
 /*@media (prefers-color-scheme: dark) {
@@ -83,6 +84,25 @@ body {
   font-weight: 700;
   line-height: 74px; /* 105.714% */
   letter-spacing: 1.4px; 
+}
+
+.header__linkbutton {
+  padding: 10px 30px 10px 30px;
+  border-radius: 100px;
+  border: 1px solid red;
+  color: var(--red-orange);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0.02em;
+}
+
+.header__linkbutton:hover {
+  background: var(--linear-orange);
+  background-clip: none;
+  -webkit-background-clip: none;
+  -webkit-text-fill-color: none;
+  color: #FFF;
 }
 
 .section__subtext {
