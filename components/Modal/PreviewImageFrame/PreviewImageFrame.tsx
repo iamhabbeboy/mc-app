@@ -52,7 +52,7 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
     formData.append("user", JSON.stringify(user));
     formData.append("image", imageSelected);
     try {
-    const resp = await axios.post('/user', formData, {
+    const resp = await axios.post(`${process.env.API_URI}/user`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }})
