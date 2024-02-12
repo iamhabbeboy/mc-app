@@ -13,10 +13,10 @@ const Form = () => {
 
   const route = useRouter();
 
-  const handleCloseAllModal = () => {
-    const instructionModal = new CustomEvent("close-all-form-modal");
-    window.dispatchEvent(instructionModal);
-  };
+  // const handleCloseAllModal = () => {
+  //   const instructionModal = new CustomEvent("close-all-form-modal");
+  //   window.dispatchEvent(instructionModal);
+  // };
 
   const handleCloseForm = () => {
     const nameRegex = /^[a-zA-Z\s]+$/;
