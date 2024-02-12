@@ -27,24 +27,25 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
   const handleDownload = async () => {
     // call api endpoint 
     storeUserInformation();
-    if (imageFrameRef.current) {
-        htmlToImage.toPng(imageFrameRef.current)
-          .then(function (dataUrl) {
-            const link = document.createElement('a');
-            link.href = dataUrl;
-            link.download = 'mcom-love-possible.png';
-            link.click();
-          })
-          .catch(function (error) {
-            console.error(error);
-            alert('Error occured, kindly refresh the page and try again.');
-          });
-    }
+    // if (imageFrameRef.current) {
+    //     htmlToImage.toPng(imageFrameRef.current)
+    //       .then(function (dataUrl) {
+    //         const link = document.createElement('a');
+    //         link.href = dataUrl;
+    //         link.download = 'mcom-love-possible.png';
+    //         link.click();
+    //       })
+    //       .catch(function (error) {
+    //         console.error(error);
+    //         alert('Error occured, kindly refresh the page and try again.');
+    //       });
+    // }
   }
 
   const storeUserInformation = async () => {
-    setIsLoading(true);
-    const user = JSON.parse(localStorage.getItem("mcon-data") || "");
+    // setIsLoading(true);
+    const user = JSON.parse(localStorage.getItem("mcom-data") || "");
+    console.log(user)
     if(!user || !imageSelected) {
       return alert("Error occured while processing your data, try again by refreshing the page");
     }
@@ -52,7 +53,7 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
     formData.append("user", JSON.stringify(user));
     formData.append("image", imageSelected);
     try {
-    const resp = await axios.post(`${process.env.API_URI}/user`, formData, {
+    const resp = await axios.post(`https://makelovepossible-api.vercel.app/user`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }})

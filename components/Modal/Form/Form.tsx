@@ -80,7 +80,7 @@ const Form = () => {
       return false;
     }
     setErrMessage("")
-    localStorage.setItem("mcron-data", JSON.stringify(payload));
+    localStorage.setItem("mcom-data", JSON.stringify(payload));
     const openModal = new CustomEvent("close-form-modal");
     window.dispatchEvent(openModal);
   }
