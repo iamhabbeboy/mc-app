@@ -27,7 +27,6 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
   const handleDownload = async () => {
     // call api endpoint 
     storeUserInformation();
-    if(userInfo) {
       if (imageFrameRef.current) {
           htmlToImage.toPng(imageFrameRef.current)
             .then(function (dataUrl) {
@@ -41,13 +40,12 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
               alert('Error occured, kindly refresh the page and try again.');
             });
       }
-  }
+
   }
 
   const storeUserInformation = async () => {
     setIsLoading(true);
     const user = JSON.parse(localStorage.getItem("mcom-data") || "");
-    console.log(user)
     if(!user || !imageSelected) {
       return alert("Error occured while processing your data, try again by refreshing the page");
     }
