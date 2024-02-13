@@ -66,11 +66,11 @@ export default async function ImageShare({ params }: { params: {userId: string }
                 <Image src="/love-circle.svg" width={159} height={132} alt="love circle image" />
               </span>
               <div className="w-[400px] mx-auto">
-                <div className={`bg-[url('/frame.png')] bg-no-repeat lg:w-[450px] sm:w-full lg:h-[562px] h-[495px] bg-contain mx-auto ${style.image__previewLayout}`}>
-                  <div className={`bg-no-repeat bg-center bg-contain lg:w-[370px] lg:h-[380px] w-[80.5%] h-[270px] relative top-[38px] left-[37.5px] lg:top-[42px] lg:left-[42px]`}>
-                    <img src={resp.image} width={380} height={380} alt="" className="object-cover" />
-                  </div>
-                </div>
+                {/* <div className={`bg-no-repeat lg:w-[450px] sm:w-full lg:h-[562px] h-[495px] bg-contain mx-auto ${style.image__previewLayout}`}> */}
+                  {/* <div className={`bg-no-repeat bg-center bg-contain lg:w-[370px] lg:h-[380px] w-[80.5%] h-[270px] relative top-[38px] left-[37.5px] lg:top-[42px] lg:left-[42px]`}> */}
+                    <img src={resp.image} width={380} height={380} alt="Make love possible image" className="object-cover" />
+                  {/* </div> */}
+                {/* </div> */}
               </div>
             </div>
             <div className="text-center mx-auto mt-5">
