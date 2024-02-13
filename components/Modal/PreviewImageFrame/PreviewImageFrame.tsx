@@ -85,7 +85,7 @@ const PreviewImageFrame = ({ imageSelected }: ImageSelectionProps) => {
       setIsLoading(false);
       setUserInfo(resp.data.data);
       const userId = user?.id as string || "aaa"
-      const metaUrl = `https://makelovepossible.mcom.ng/lovers/${userId}`
+      const metaUrl = `https://makelovepossible.mcom.ng/${userId}`
       setSocialMediaUrl(metaUrl)
     } catch (e) {
       console.log(e)
@@ -105,7 +105,7 @@ const PreviewImageFrame = ({ imageSelected }: ImageSelectionProps) => {
     }
     const userId = user?.id as string || ""
     let fbUrl = ''
-    const metaUrl = `https://makelovepossible.mcom.ng/lovers/${userId}`
+    const metaUrl = `https://makelovepossible.mcom.ng/${userId}`
     if (sn === "instagram") {
        fbUrl = `https://www.instagram.com/?url=${encodeURIComponent(metaUrl)}`;
     }else if(sn === "facebook") {

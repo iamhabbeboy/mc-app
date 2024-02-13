@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: {userId: string } }
     title: "Share your image - Make love possible",
     description: "Share your love story and be among 4 lucky couples to win an all-expense-paid dinner this Valentine",
     openGraph: {
-      url: `${process.env.BASE_URI}/lovers/${resp.image}`,
+      url: `${process.env.BASE_URI}/${resp.image}`,
       title: "Make love possible",
       description: "Share your love story and be among 4 lucky couples to win an all-expense-paid dinner this Valentine",
       images: [
