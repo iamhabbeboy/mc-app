@@ -1,0 +1,49 @@
+.frame__layout {
+    border-radius: 30px;
+    border: 1px solid var(--Light-Grey, #DBDEDC);
+    background: var(--White-Linear, linear-gradient(180deg, #F0F0F0 0%, #FFF 100%));
+    /* Card */
+    box-shadow: 0px 4px 34px 1px rgba(0, 0, 0, 0.10);
+}
+
+.social__instagram {
+    background: linear-gradient(213deg, #8D25F8 10.43%, #FF0373 59.21%, #FCCD00 84.51%); 
+}
+
+.button__layout {
+    width: 30%;
+}
+
+@media only screen and (min-width: 700px){
+    .button__layout {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    .button__layout {
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 320px){
+  .image__previewer {
+        width:70%;
+        top: 36px; 
+        left:48px;
+        height:240px;
+    }
+}
+@media only screen and (max-width: 600px){
+    .ring__circle {
+        display:none;
+    }
+
+    .button__layout {
+        width: 100%;
+    }
+}
+@media only screen and (min-width: 1500px){
+    .button__layout {
+        width: 40%;
+    }
+}

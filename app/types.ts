@@ -1,4 +1,5 @@
 export interface User {
+  id?: string;
   image: string;
   user: PrimaryUser;
   partner: PrimaryUser;

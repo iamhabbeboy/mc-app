@@ -53,7 +53,7 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
     formData.append("user", JSON.stringify(user));
     formData.append("image", imageSelected);
     try {
-    const resp = await axios.post(`https://makelovepossible-api.vercel.app/user`, formData, {
+    const resp = await axios.post(`${process.env.API_URI}/user`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }})
@@ -71,17 +71,18 @@ const PreviewImageFrame = ({imageSelected}: ImageSelectionProps) => {
   }
 
   const handleShare = (sn: string) => {
-    const image = userInfo?.image as string
+    const userId = userInfo?.id as string
     if(!userInfo) {
       storeUserInformation();
     }
     let fbUrl = '';
+    const metaUrl = `${process.env.BASE_URI}/lovers/${userId}`
     if(sn === "facebook") {
-      fbUrl = `https://www.facebook.com/share.php?u=${encodeURIComponent(image)}`;
+      fbUrl = `https://www.facebook.com/share.php?u=${encodeURIComponent(metaUrl)}`;
     } else if (sn === "twitter") {
-      fbUrl = `http://x.com/share?&media=${image}`
+      fbUrl = `http://x.com/share?&media=${metaUrl}`
     } else if(sn === "instagram") {
-      fbUrl = `https://www.instagram.com/?url=${encodeURIComponent(image)}`;
+      fbUrl = `https://www.instagram.com/?url=${encodeURIComponent(metaUrl)}`;
     }
     const windowFeatures = "left=100,top=100,width=320,height=320";
     const handle = window.open(fbUrl, "_blank", windowFeatures);
