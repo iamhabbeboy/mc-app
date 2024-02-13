@@ -1,4 +1,3 @@
-import CustomHead from "@/components/CustomHead";
 import { Metadata } from "next";
 import Head from "next/head";
 
@@ -8,7 +7,7 @@ import Head from "next/head";
 //     viewport: 'width=device-width, initial-scale=1, maximum-scale=1', // <-- here
 //   }
 
-function ImageShare({ imageUrl }: { imageUrl: string }) {
+function ImageShare() {
     return (
         <>
             <main>
