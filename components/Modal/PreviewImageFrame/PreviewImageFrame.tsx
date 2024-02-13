@@ -64,7 +64,7 @@ const PreviewImageFrame = ({ imageSelected }: ImageSelectionProps) => {
   }
   const storeUserInformation = async () => {
     const user = JSON.parse(localStorage.getItem("mcom-data") || "");
-    if(!user) {
+    if (!user) {
       return alert("Error occured: Your user information is missing, kindly restart the process");
     }
     if (!imageSelected || !imageFramed) {
@@ -83,10 +83,12 @@ const PreviewImageFrame = ({ imageSelected }: ImageSelectionProps) => {
         }
       })
       setIsLoading(false);
-      setUserInfo(resp.data.data);
-      const userId = user?.id as string || "aaa"
+      const response = resp.data.data;
+      setUserInfo(response);
+      const userId = response.id as string;
       const metaUrl = `https://makelovepossible.mcom.ng/${userId}`
       setSocialMediaUrl(metaUrl)
+      return response;
     } catch (e) {
       console.log(e)
       alert("Error occured, kindly try again")
@@ -101,23 +103,28 @@ const PreviewImageFrame = ({ imageSelected }: ImageSelectionProps) => {
   const handleShare = async (sn: string) => {
     let user = userInfo as User;
     if (!user) {
-      await storeUserInformation();
+      user = await storeUserInformation();
     }
-    const userId = user?.id as string || ""
-    let fbUrl = ''
-    const metaUrl = `https://makelovepossible.mcom.ng/${userId}`
-    if (sn === "instagram") {
-       fbUrl = `https://www.instagram.com/?url=${encodeURIComponent(metaUrl)}`;
-    }else if(sn === "facebook") {
+    if (user && user.id) {
+      const userId = user?.id as string;
+      let fbUrl = ''
+      const customMetaUrl = `https://makelovepossible.mcom.ng/${userId}`
+      const metaUrl = socialMediaUrl || customMetaUrl;
+      if (sn === "instagram") {
+        fbUrl = `https://www.instagram.com/?url=${encodeURIComponent(metaUrl)}`;
+      } else if (sn === "facebook") {
         fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(metaUrl)}`;
-    } else if (sn === "x") {
+      } else if (sn === "x") {
         fbUrl = `http://x.com/share?url=${encodeURIComponent(metaUrl)}`
-    }
-    console.log(fbUrl)
-    const windowFeatures = "left=100,top=100,width=520,height=520";
-    const handle = window.open(fbUrl, "_blank", windowFeatures);
-    if (!handle) {
-      window.location.href = fbUrl;
+      }
+
+      const windowFeatures = "left=100,top=100,width=520,height=520";
+      const handle = window.open(fbUrl, "_blank", windowFeatures);
+      if (!handle) {
+        window.location.href = fbUrl;
+      }
+    } else {
+      alert("error occured: please try again by refreshing the page.");
     }
     // if (sn === "facebook") {
     //   if (shareOnFacebookRef.current) {
