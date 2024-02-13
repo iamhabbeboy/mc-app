@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: {userId: string } }
       description: "Share your love story and be among 4 lucky couples to win an all-expense-paid dinner this Valentine",
       images: [
         {
-          url: `${process.env.BASE_URI}/lovers/${resp.image}`,
+          url: `${resp.image}`,
           alt: "Make love possible Image preview",
         },
       ],
@@ -75,9 +75,9 @@ export default async function ImageShare({ params }: { params: {userId: string }
             </div>
             <div className="text-center mx-auto mt-5">
               <div className={`flex justify-center my-5 mx-auto text-center ${style.button__layout}`}>
-                <button className="button button__create text-white py-2 px-7"><span className="inline">Download Images </span>
+                <Link href={resp.image} target="_blank" className="button button__create text-white py-2 px-7"><span className="inline">Download Images </span>
                   <Image src="/download.svg" width={24} height={24} alt="download icon" className="inline" />
-                </button>
+                </Link>
               </div>
               <div className="mt-5">
                 <div className="mx-auto text-center lg:w-[40%] w-[60%] mb-8">
